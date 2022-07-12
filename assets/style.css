@@ -25,3 +25,201 @@ body {
   .logo {
     height: 100px;
   }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+.search {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow .2s;
+}
+
+.search-input {
+  display: flex;
+  height: 70px;
+  width: 100%;
+}
+
+.search-bar {
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+  color: white;
+  margin: 0;
+  padding: 0 0 0 1rem;
+  width: 100%;
+  background-color: #E7E7E7;
+  color: black;
+}
+
+.search-bar:focus {
+  outline: none;
+}
+
+.search-bar::placeholder {
+  color: #C7BEBE;
+}
+
+.search-button {
+  border: none;
+    margin: 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    color: white;
+    background-color: #E7E7E7;
+    border-radius: 0 5px 5px 0;
+    color: black;
+}
+.dropdown {
+   width:250px;
+   height: 100%;
+   left: 0px;
+   top: 0px;
+   border-radius: 5px;
+   color: white;
+   font-weight: 100;
+   display: flex;
+   flex-direction: row;
+   padding-right: 20px;
+   position: relative;
+   z-index: 1;
+   box-sizing: content-box;
+   transition: box-shadow .2s;
+}
+ .dropdown-zone {
+  display: flex;
+    height: 70px;
+    width: 100%;
+ }
+
+ .ingredient-input {
+    border: none;
+    color: white;
+    margin: 0;
+    padding: 0 0 0 1rem;
+    width: 100%;
+    background-color: #3282F7;
+    border-radius: 5px 0 0 5px;
+ }
+
+ .ingredient-button {
+    border: none;
+    margin: 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    color: white;
+    background-color: #3282F7;
+    border-radius: 0 5px 5px 0;
+ }
+
+
+ .ingredient-results {
+  background-color: #3282F7;
+    color: white;
+    padding: 0.8rem;
+    margin-top: -10px;
+    list-style-type: none;
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 3fr);
+    display: none;
+    position: absolute;
+    width: 95%;
+ }
+
+ .ingredient-item {
+  cursor: pointer;
+ }
+
+ .ingredient-input::placeholder {
+  color: white;
+ }
+
+ .appliance-input {
+    border-radius: 5px 0px 0px 5px;
+    border: none;
+    color: white;
+    margin: 0;
+    padding: 0 0 0 1rem;
+    width: 100%;
+    background-color: #68D9A4;
+    border-radius: 5px 0 0 5px;
+ }
+
+ .appliance-button {
+    border: none;
+    margin: 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    color: white;
+    background-color: #68D9A4;
+    border-radius: 0 5px 5px 0;
+ }
+
+ .appliances-result {
+  background-color: #68D9A4;
+    color: white;
+    padding: 0.8rem;
+    margin-top: -10px;
+    display: none;
+    list-style-type: none;
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 3fr);
+ }
+  
+ .appliance-item {
+  cursor: pointer;
+ }
+
+ .appliance-input::placeholder {
+  color: white;
+ }
+
+ .appliance-dropdown {
+  margin-top: 10px;
+  margin-bottom: 10px
+ }
+
+ .ustensils-input {
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+  color: white;
+  margin: 0;
+  padding: 0 0 0 1rem;
+  width: 100%;
+  background-color: #ED6454;
+  border-radius: 5px 0 0 5px;
+ }
+
+ .ustensils-button {
+  border: none;
+  margin: 0;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  color: white;
+  background-color: #ED6454;
+  border-radius: 0 5px 5px 0;
+ }
+
+ .ustensils-result {
+  background-color: #ED6454;
+  color: white;
+  padding: 0.8rem;
+  list-style-type: none;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 3fr);
+  display: none;
+ }
+
+ .ustensil-item {
+    cursor: pointer;
+ }
+
+ .ustensils-input::placeholder {
+   color: white;
+ }
+ 
