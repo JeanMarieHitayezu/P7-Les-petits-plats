@@ -1,0 +1,27 @@
+body {
+    background-color: #FFFFFF;
+    font-family: "DM Sans", sans-serif;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 1600px;
+
+  }
+  
+  *:focus {
+    outline: none;
+  }
+  
+  header {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+  }
+  
+  .logo {
+    height: 100px;
+  }
