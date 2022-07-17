@@ -32,6 +32,7 @@ body {
     margin: 0;
   }
 
+  /* ZONE DE RECHERCHE */
 .search {
   display: flex;
   flex-direction: column;
@@ -75,6 +76,8 @@ body {
     border-radius: 0 5px 5px 0;
     color: black;
 }
+
+/* ZONE DES DROPDOWNS */
 .dropdown {
    width:250px;
    height: 100%;
@@ -223,3 +226,63 @@ body {
    color: white;
  }
  
+ /* ZONE DES CARTES DE MENUS*/
+
+ .recipe-img {
+  background-color: #C7BEBE;
+  border-radius: 5px 5px 0 0;
+  height: 150px;
+}
+
+.recipe-section {
+  padding: 0.5rem 1rem 2rem 1rem;
+  background-color: #E7E7E7;
+  border-radius: 0 0 5px 5px;
+  animation: slide-in-right 0.7s cubic-bezier(0.25, 0.45, 0.45, .94) both
+}
+
+.recipe-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  margin: 0;
+}
+
+.recipe-aside {
+  align-items: center;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  justify-content: center;
+  height: 110px;
+  font-size: 12px;
+}
+
+.recipe-list {
+  align-self: start;
+  font-size: 12px;
+  justify-self: start;
+}
+
+.recipe-description {
+  align-self: start;
+  height: 118px;
+  justify-self: start;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  width: 100%;
+}
+
+.recipe-time {
+  display:flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  width: 60px;
+}
+
+.fal {
+  font-weight: 500;
+}
