@@ -4,13 +4,9 @@ let ustensils = [];
 let resultFiltered;
 const filterSelected = [];
 
-const barFilters = document.querySelector(".search-filters");
-const ingredientItem = document.querySelectorAll(".ingredient-item");
-const ingredientResult = document.querySelector(".ingredient-drops");
-const apparatusResult = document.querySelector(".apparatus-result");
-const ustensilsResult = document.querySelector(".ustensils-result");
 const globalSearchBar = document.querySelector(".search-bar");
 const recipesSection = document.querySelector(".recipes-section");
+
 const ingredientArrow = document.querySelector(".ingredient-arow");
 const ingredientForm = document.querySelector(".ingredient-dropdown");
 const ingredientInput = document.querySelector(".ingredient-input");
@@ -45,9 +41,10 @@ const createRecipesCard = (recipes) => {
     
   const { recipes } = await getData();
     
-  createRecipesCard(recipes);
-
-  
+  createRecipesCard(recipes)
+  displayInputs(recipes);
+  ongoingSearch(recipes)
+  filteredRecipes(recipes, globalSearchBar)
 
 };
   

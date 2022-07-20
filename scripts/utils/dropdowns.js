@@ -171,8 +171,8 @@ const displayInputs = (recipes) => {
 		ingredientItem.forEach((item) => {
 			item.addEventListener("click", () => {
 				filterSelected.push(item.textContent);
-				const filterSelectedUnduplicated = [...new Set(filterSelected)];
-				createbarFilters(filterSelectedUnduplicated, recipes);
+				const noduplicateFilter = [...new Set(filterSelected)];
+				createBarFilters(noduplicateFilter, recipes);
 				ingredientResult.style.display = "none"
 				ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 				ingredientInput.style.width = "100%";
@@ -186,7 +186,7 @@ const displayInputs = (recipes) => {
 		});
 	};
 
-	function openCloseAppliance() {
+    function openCloseAppliance() {
 		if(apparatusResult.style.display === 'grid') {
 			apparatusResult.style.display = 'none'
 			apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
@@ -333,8 +333,8 @@ const displayInputs = (recipes) => {
 		apparatusItems.forEach((item) => {
 			item.addEventListener("click", () => {
 				filterSelected.push(item.textContent);
-				const filterSelectedUnduplicated = [...new Set(filterSelected)];
-				createbarFilters(filterSelectedUnduplicated, recipes);
+				const noduplicateFilter = [...new Set(filterSelected)];
+				createBarFilters(noduplicateFilter, recipes);
 				apparatusResult.style.display = "none"
 				apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 	
@@ -346,6 +346,7 @@ const displayInputs = (recipes) => {
 			});
 		});
 	};
+	
 	function openCloseUstensils() {
 		if(ustensilsResult.style.display === 'grid') {
 			ustensilsResult.style.display = 'none'
@@ -457,7 +458,7 @@ const displayInputs = (recipes) => {
 					});
 				}
 	
-		listenOnUstensilsInput();
+		displayUstensilItems();
 	})
 	
 	ustensilsInput.addEventListener("keyup", (e) => {
@@ -487,16 +488,16 @@ const displayInputs = (recipes) => {
 		} else {
 			ustensilsResult.style.display = 'none';
 		}
-		listenOnUstensilsInput();
+		displayUstensilItems();
 	})
 	
-	const listenOnUstensilsInput = () => {
+	const displayUstensilItems = () => {
 		const ustensilsItems = document.querySelectorAll(".ustensil-item");
 		ustensilsItems.forEach((item) => {
 			item.addEventListener("click", () => {
 				filterSelected.push(item.textContent);
 				const noduplicateFilter = [...new Set(filterSelected)];
-				createbarFilters(noduplicateFilter, recipes);
+				createBarFilters(noduplicateFilter, recipes);
 				ustensilsResult.style.display = "none"
 				ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 	
@@ -509,5 +510,3 @@ const displayInputs = (recipes) => {
 		});
 	};
 }
-
-

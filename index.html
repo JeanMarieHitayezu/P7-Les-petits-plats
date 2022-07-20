@@ -9,9 +9,9 @@
 	    <title>Les Petits Plats</title>
         <link rel="stylesheet" href="assets/style.css" />
 	</head>
-	<body>
-		<main>
-			<header>
+	<body class="body">
+		
+			<header class="header">
 				<img class="logo" src="assets/logo.png" alt="Logo de l'entreprise" />
 			</header>
             <div class="search">
@@ -31,41 +31,41 @@
 				<aside class="search-filters"></aside>
 			</div>
 	
-			<div class="dropdown-zone">
+			<div class="dropdowns">
 	
-				<form class="dropdown ingredients-dropdown" >
+				<form class="dropdowns__form ingredient" >
 					<input
 						class="ingredient-input"
 						placeholder="Ingrédients"
 						type="search"
 					/>
 					<button class="ingredient-button" type="button">
-						<i class="fas fa-angle-down ingredients-arrow"></i>
+						<i class="fas fa-angle-down ingredient-arrow"></i>
 					</button>
 				</form>
 	
-				<aside class="ingredients-result">
-					<ul class="ingredient-results"></ul>
+				<aside class="ingredient-result">
+					<ul class="ingredient-drops"></ul>
 				</aside>
 	
-				<form class="dropdown appliances-dropdown">
+				<form class="dropdowns__form apparatus">
 					<input
-						class="appliance-input"
+						class="apparatus-dropdown"
 						placeholder="Appareils"
 						type="search"
 					/>
-					<button class="appliance-button" type="button">
-						<i class="fas fa-angle-down appliance-arrow"></i>
+					<button class="apparatus-button" type="button">
+						<i class="fas fa-angle-down apparatus-arrow"></i>
 					</button>
 				</form>
 	
-				<aside class= "appliances-result">
-					<ul class="appliance-results"></ul>
+				<aside class= "apparatus-results">
+					<ul class="apparatus-result"></ul>
 				</aside>
 
-                <form class="dropdown ustensils-dropdown">
+                <form class="dropdowns__form ustensils">
 					<input
-						class="ustensils-input"
+						class="ustensils-dropdown"
 						placeholder="Ustensiles"
 						type="search"
 					/>
@@ -75,15 +75,16 @@
 				</form>
 	
 			    <aside class="ustensils-result">
-					<ul class="ustensil-results"></ul>
+					<ul class="ustensils-results nodisplayed__ustensils-results"></ul>
 				</aside>
 	
-		    </div>
+		</div>
 	
-			<div class="recipes-section"></div>
-		</main>
+		<div class="recipes-section"></div>
+		
 		<script src="./scripts/index.js"></script>
 		<script src="./scripts/factories/RecipeCard.js"></script>
+		<script src="./scripts/utils/dropdowns.js"></script>
 		    
 			
 	</body>
