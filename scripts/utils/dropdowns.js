@@ -57,7 +57,7 @@ const displayInputs = (recipes) => {
 		ingredients = result.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
 
-		filterSelected.forEach((selectedFilter) => {
+		selectedFilters.forEach((selectedFilter) => {
    
 			ingredients.splice(ingredients.indexOf(selectedFilter),1)			
 		});
@@ -90,7 +90,7 @@ const displayInputs = (recipes) => {
 			ingredients = filteredRecipe.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 			ingredients = [...new Set([].concat(...ingredients))].sort()
 
-			filterSelected.forEach((selectedFilter) => {
+			selectedFilters.forEach((selectedFilter) => {
    
 				ingredients.splice(ingredients.indexOf(selectedFilter),1)				
 			});	
@@ -108,7 +108,7 @@ const displayInputs = (recipes) => {
 		ingredients = result.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
 
-		filterSelected.forEach((selectedFilter) => {
+		selectedFilters.forEach((selectedFilter) => {
    
 			ingredients.splice(ingredients.indexOf(selectedFilter),1)						
 		});
@@ -170,9 +170,9 @@ const displayInputs = (recipes) => {
 	
 		ingredientItem.forEach((item) => {
 			item.addEventListener("click", () => {
-				filterSelected.push(item.textContent);
-				const noduplicateFilter = [...new Set(filterSelected)];
-				createBarFilters(noduplicateFilter, recipes);
+				selectedFilters.push(item.textContent);
+				const noduplicateFilter = [...new Set(selectedFilters)];
+				createbarFilters(noduplicateFilter, recipes);
 				ingredientResult.style.display = "none"
 				ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 				ingredientInput.style.width = "100%";
@@ -219,7 +219,7 @@ const displayInputs = (recipes) => {
 			apparatus = result.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
 
-			filterSelected.forEach((selectedFilter) => {
+			selectedFilters.forEach((selectedFilter) => {
    
 				apparatus.splice(apparatus.indexOf(selectedFilter),1)				
 			});
@@ -251,7 +251,7 @@ const displayInputs = (recipes) => {
 			apparatus = filteredRecipe.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
 
-			filterSelected.forEach((selectedFilter) => {
+			selectedFilters.forEach((selectedFilter) => {
    
 				apparatus.splice(apparatus.indexOf(selectedFilter),1)							
 			});
@@ -270,7 +270,7 @@ const displayInputs = (recipes) => {
 			apparatus = result.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
 
-			filterSelected.forEach((selectedFilter) => {
+			selectedFilters.forEach((selectedFilter) => {
    
 				apparatus.splice(apparatus.indexOf(selectedFilter),1)						
 			});
@@ -332,9 +332,9 @@ const displayInputs = (recipes) => {
 		const apparatusItems = document.querySelectorAll(".app-item");
 		apparatusItems.forEach((item) => {
 			item.addEventListener("click", () => {
-				filterSelected.push(item.textContent);
-				const noduplicateFilter = [...new Set(filterSelected)];
-				createBarFilters(noduplicateFilter, recipes);
+				selectedFilters.push(item.textContent);
+				const noduplicateFilter = [...new Set(selectedFilters)];
+				createbarFilters(noduplicateFilter, recipes);
 				apparatusResult.style.display = "none"
 				apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 	
@@ -380,7 +380,7 @@ const displayInputs = (recipes) => {
 			ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 			ustensils = [...new Set([].concat(...ustensils))]
 	
-			filterSelected.forEach((selectedFilter) => {
+			selectedFilters.forEach((selectedFilter) => {
 	   
 				ustensils.splice(ustensils.indexOf(selectedFilter),1)				
 			});
@@ -412,7 +412,7 @@ const displayInputs = (recipes) => {
 					ustensils = filteredRecipe.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 					ustensils = [...new Set([].concat(...ustensils))].sort();
 	
-					filterSelected.forEach((selectedFilter) => {
+					selectedFilters.forEach((selectedFilter) => {
 	   
 					ustensils.splice(ustensils.indexOf(selectedFilter),1)				
 				});
@@ -430,7 +430,7 @@ const displayInputs = (recipes) => {
 					ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 					ustensils = [...new Set([].concat(...ustensils))].sort();
 	
-					filterSelected.forEach((selectedFilter) => {
+					selectedFilters.forEach((selectedFilter) => {
 	   
 						ustensils.splice(ustensils.indexOf(selectedFilter),1)
 							
@@ -495,9 +495,9 @@ const displayInputs = (recipes) => {
 		const ustensilsItems = document.querySelectorAll(".ustensil-item");
 		ustensilsItems.forEach((item) => {
 			item.addEventListener("click", () => {
-				filterSelected.push(item.textContent);
-				const noduplicateFilter = [...new Set(filterSelected)];
-				createBarFilters(noduplicateFilter, recipes);
+				selectedFilters.push(item.textContent);
+				const noduplicateFilter = [...new Set(selectedFilters)];
+				createbarFilters(noduplicateFilter, recipes);
 				ustensilsResult.style.display = "none"
 				ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 	
@@ -510,3 +510,5 @@ const displayInputs = (recipes) => {
 		});
 	};
 }
+
+

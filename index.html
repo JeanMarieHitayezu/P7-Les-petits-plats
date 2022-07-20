@@ -6,80 +6,81 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
 		    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-	    <title>Les Petits Plats</title>
-        <link rel="stylesheet" href="assets/style.css" />
+	    <title>Les Petits Plats </title>
+        <link rel="stylesheet" href="css/style.css" />
 	</head>
 	<body class="body">
-		
-			<header class="header">
-				<img class="logo" src="assets/logo.png" alt="Logo de l'entreprise" />
-			</header>
-            <div class="search">
-	
-				<form class="search-input">
-	
-					<input
-						class="search-bar"
-						placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
-						type="search"
-					/>
-					<button class="search-button" type="submit">
-						<i class="far fa-search"></i>
-					</button>
-	
-				</form>
-				<aside class="search-filters"></aside>
-			</div>
-	
-			<div class="dropdowns">
-	
-				<form class="dropdowns__form ingredient" >
-					<input
-						class="ingredient-input"
-						placeholder="Ingrédients"
-						type="search"
-					/>
-					<button class="ingredient-button" type="button">
-						<i class="fas fa-angle-down ingredient-arrow"></i>
-					</button>
-				</form>
-	
-				<aside class="ingredient-result">
-					<ul class="ingredient-drops"></ul>
-				</aside>
-	
-				<form class="dropdowns__form apparatus">
-					<input
-						class="apparatus-dropdown"
-						placeholder="Appareils"
-						type="search"
-					/>
-					<button class="apparatus-button" type="button">
-						<i class="fas fa-angle-down apparatus-arrow"></i>
-					</button>
-				</form>
-	
-				<aside class= "apparatus-results">
-					<ul class="apparatus-result"></ul>
-				</aside>
+		<header class="header">
+			<img class="logo" src="assets/logo.png" alt="Logo de l'entreprise" />
+		</header>
 
-                <form class="dropdowns__form ustensils">
-					<input
-						class="ustensils-dropdown"
-						placeholder="Ustensiles"
-						type="search"
-					/>
-					<button class="ustensils-button" type="button">
-						<i class="fas fa-angle-down ustensils-arrow"></i>
-					</button>
-				</form>
-	
-			    <aside class="ustensils-result">
-					<ul class="ustensils-results nodisplayed__ustensils-results"></ul>
-				</aside>
-	
+		<div class="search">
+
+			<form class="search-input">
+
+				<input
+					class="search-bar"
+					placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+					type="search"
+				/>
+				<button class="search-button" type="submit">
+					<i class="far fa-search"></i>
+				</button>
+
+			</form>
+            <div class="search-filters"></div>
 		</div>
-	
+
+		<div class="dropdowns">
+
+			<form class="dropdowns__form ingredient" >
+				<input
+					class="ingredient-input"
+					placeholder="Ingrédients"
+					type="search"
+				/>
+				<button class="ingredient-button" type="button">
+					<i class="far fa-chevron-down ingredient-arow"></i>
+				</button>
+			</form>
+
+			<div class="ingredient-results">
+				<ul class="ingredient-drops"></ul>
+			</div>
+
+			<form class="dropdowns__form apparatus">
+				<input
+					class="apparatus-dropdown"
+					placeholder="Appareils"
+					type="search"
+				/>
+				<button class="apparatus-button" type="button">
+					<i class="far fa-chevron-down apparatus-arrow"></i>
+				</button>
+			</form>
+
+			<div class="apparatus-results">
+				<ul class="apparatus-result"></ul>
+			</div>
+						
+			<div>
+			<form class="dropdowns__form ustensils">
+				<input
+				class="ustensils-dropdown"
+				placeholder="Ustensiles"
+				type="search"
+				/>
+				<button class="ustensils-button" type="button">
+					<i class="far fa-chevron-down ustensils-arrow"></i>
+				</button>
+			</form>
+			<div class="ustensils-result">
+				<ul class="ustensils-results nodisplayed__ustensils-results"></ul>
+			</div>
+
+			</div>
+		</div>
+
 		<div class="recipes-section"></div>
 		
 		<script src="./scripts/index.js"></script>
