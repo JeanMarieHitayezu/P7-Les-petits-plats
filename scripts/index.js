@@ -43,7 +43,7 @@ const createRecipesCard = (recipes) => {
     
   createRecipesCard(recipes)
   displayInputs(recipes);
-  ongoingSearch(recipes)
+  searchInput(recipes)
   filteredRecipes(recipes, globalSearchBar)
 
 };

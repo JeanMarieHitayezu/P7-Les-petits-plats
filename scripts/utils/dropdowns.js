@@ -511,4 +511,16 @@ const displayInputs = (recipes) => {
 	};
 }
 
+const createbarFilters = (noduplicateFilter, recipes) => {
+	
+	barFilters.innerHTML = "";
+	noduplicateFilter.forEach((filter) => {
+
+		return barFilters.innerHTML += `<div class="filter-query">${filter}<i class="fal fa-times-circle filter-icon"></i></div>`
+
+	});
+	researchOnFilters(recipes, noduplicateFilter);
+};
+
+let result;
 
