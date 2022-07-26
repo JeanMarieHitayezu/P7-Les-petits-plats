@@ -1,4 +1,4 @@
-const filteredRecipes = (recipes, query) => {
+/*const filteredRecipes = (recipes, query) => {
 
 	const results = [];
     
@@ -43,4 +43,4 @@ const filteredRecipes = (recipes, query) => {
 			return results;
 
 		}
-};
+};*/
