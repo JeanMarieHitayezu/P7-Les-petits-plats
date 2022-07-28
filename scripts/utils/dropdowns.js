@@ -1,4 +1,9 @@
 
+const barFilters = document.querySelector(".search-filters");
+const ingredientItem = document.querySelectorAll(".ingredient-item");
+const ingredientResult = document.querySelector(".ingredient-drops");
+const apparatusResult = document.querySelector(".apparatus-result");
+const ustensilsResult = document.querySelector(".ustensils-result");
 const initFilters = (recipes) => {
 
 	recipes.forEach((recipe) => {
@@ -53,7 +58,7 @@ const displayInputs = (recipes) => {
 		ingredients = result.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
 
-		filterSelected.forEach((selectedFilter) => {
+		selectedFilters.forEach((selectedFilter) => {
    
 			ingredients.splice(ingredients.indexOf(selectedFilter),1)			
 		});
@@ -67,7 +72,7 @@ const displayInputs = (recipes) => {
 		});
 
 	  }
-	  if (searchBar.value.length >= 3) {
+	  if (globalSearchBar.value.length >= 3) {
 
 		ingredients = results.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
@@ -81,12 +86,12 @@ const displayInputs = (recipes) => {
 
 		if (result) {
 			
-			filteredRecipe = filteredRecipes(recipes, searchBar.value);
+			filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
 	
 			ingredients = filteredRecipe.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 			ingredients = [...new Set([].concat(...ingredients))].sort()
 
-			filterSelected.forEach((selectedFilter) => {
+			selectedFilters.forEach((selectedFilter) => {
    
 				ingredients.splice(ingredients.indexOf(selectedFilter),1)				
 			});	
@@ -99,12 +104,12 @@ const displayInputs = (recipes) => {
 			});	
 		}
 
-	  } else if(searchBar.value.length <= 2 && result) {
+	  } else if(globalSearchBar.value.length <= 2 && result) {
 		
 		ingredients = result.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
 
-		filterSelected.forEach((selectedFilter) => {
+		selectedFilters.forEach((selectedFilter) => {
    
 			ingredients.splice(ingredients.indexOf(selectedFilter),1)						
 		});
@@ -115,7 +120,7 @@ const displayInputs = (recipes) => {
    
 			return ingredientResult.innerHTML += `<li class="ingredient-item">${ingredient}</li>`;			
 		});
-	  } else if(searchBar.value.length <= 2) {
+	  } else if(globalSearchBar.value.length <= 2) {
 
 		ingredients = recipes.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
@@ -166,181 +171,357 @@ const displayInputs = (recipes) => {
 	
 		ingredientItem.forEach((item) => {
 			item.addEventListener("click", () => {
-				filterSelected.push(item.textContent);
-				const noduplicateFilter = [...new Set(filterSelected)];
+				selectedFilters.push(item.textContent);
+				const noduplicateFilter = [...new Set(selectedFilters)];
 				createbarFilters(noduplicateFilter, recipes);
 				ingredientResult.style.display = "none"
 				ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 				ingredientInput.style.width = "100%";
 	
-				if (searchBar.value.length >= 3) {
+				if (globalSearchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
-					filteredResult = filteredRecipes(recipes, searchBar.value);
-					createRecipesCard(filteredResult);
+					resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
+					createRecipesCard(resultFiltered);
 				}	
 			});
 		});
 	};
 
-}
-
-function openCloseAppliance() {
-	if(apparatusResult.style.display === 'grid') {
-		apparatusResult.style.display = 'none'
-		apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
-	} else {
-		apparatusResult.style.display = 'grid'
-		apparatusArrow.classList.replace("fa-chevron-down", "fa-chevron-up");
-
-		ingredientResult.style.display = 'none'
-		ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
-		ingredientInput.classList.remove("open");
-
-		ustensilsResult.style.display = 'none'
-		ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
-	}
-}
-
-apparatusArrow.addEventListener("click", () => {
-
-openCloseAppliance()
-
-apparatusResult.innerHTML = "";
-
-apparatus.forEach((apparatus) => {
-	
-	return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;		
-});
-
-	if (result) {
-
-		apparatus = result.map(recipe => recipe.appliance)
-		apparatus = [...new Set([].concat(...apparatus))].sort()
-
-		selectedFilters.forEach((selectedFilter) => {
-
-			apparatus.splice(apparatus.indexOf(selectedFilter),1)				
-		});
-
-		apparatusResult.innerHTML = "";
-
-		apparatus.forEach((apparatus) => {
-	
-			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
-		});	
-	  }
-
-	if (globalSearchBar.value.length >= 3) {
-
-		apparatus = results.map(recipe => recipe.appliance)
-		apparatus = [...new Set([].concat(...apparatus))].sort()
-
-		apparatusResult.innerHTML = "";
-
-		apparatus.forEach((apparatus) => {
-   
-			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
-		});
-
-	if (result) {
-		
-		filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
-
-		apparatus = filteredRecipe.map(recipe => recipe.appliance)
-		apparatus = [...new Set([].concat(...apparatus))].sort()
-
-		selectedFilters.forEach((selectedFilter) => {
-
-			apparatus.splice(apparatus.indexOf(selectedFilter),1)							
-		});
-
-		apparatusResult.innerHTML = "";
-
-		apparatus.forEach((apparatus) => {
-   
-			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
-		});	
-
-	}
-
-	  } else if(globalSearchBar.value.length <= 2 && result) {
-
-		apparatus = result.map(recipe => recipe.appliance)
-		apparatus = [...new Set([].concat(...apparatus))].sort()
-
-		selectedFilters.forEach((selectedFilter) => {
-
-			apparatus.splice(apparatus.indexOf(selectedFilter),1)						
-		});
-
-		apparatusResult.innerHTML = "";
-
-		apparatus.forEach((apparatus) => {
-   
-			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
-		});
-		
-	  } else if(globalSearchBar.value.length <= 2) {
-
-		apparatus = recipes.map(recipe => recipe.appliance)
-		apparatus = [...new Set([].concat(...apparatus))].sort()
-
-		apparatusResult.innerHTML = "";
-
-		apparatus.forEach((apparatus) => {
-   
-			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
-		});
-	  }
-
-	displayApparatusItems();
-})
-
-apparatusInput.addEventListener("keyup", (e) => {
-
-	if (e.target.value.length >= 3) {
-
-		apparatus = recipes.map(recipe => recipe.appliance)
-		apparatus = [...new Set([].concat(...apparatus))].sort()
-
-		apparatusResult.innerHTML = '';
-
-		const query = e.target.value;
-		
-		const results = apparatus.filter((apparatus) => {
-			apparatusResult.style.display = 'none';
-			ingredientInput.classList.remove("open");
-			return apparatus.toLowerCase().includes(query.toLowerCase());
-		});
-		
-		results.forEach((result) => {
-			apparatusResult.style.display = 'grid';
-			ustensilsResult.style.display = 'none';
-			ingredientResult.style.display = 'none';
-			return apparatusResult.innerHTML += `<li class="app-item">${result}</li>`;
-		});
-
-	} else {
-		apparatusResult.style.display = 'none';
-	}
-	displayApparatusItems();
-})
-
-const displayApparatusItems = () => {
-	const apparatusItems = document.querySelectorAll(".app-item");
-	apparatusItems.forEach((item) => {
-		item.addEventListener("click", () => {
-			selectedFilters.push(item.textContent);
-			const noduplicateFilter = [...new Set(selectedFilters)];
-			createbarFilters(noduplicateFilter, recipes);
-			apparatusResult.style.display = "none"
+    function openCloseAppliance() {
+		if(apparatusResult.style.display === 'grid') {
+			apparatusResult.style.display = 'none'
 			apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+		} else {
+			apparatusResult.style.display = 'grid'
+			apparatusArrow.classList.replace("fa-chevron-down", "fa-chevron-up");
+	
+			ingredientResult.style.display = 'none'
+			ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+			ingredientInput.classList.remove("open");
+	
+			ustensilsResult.style.display = 'none'
+			ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+		}
+	}
+    
+    apparatusArrow.addEventListener("click", () => {
 
-			if (globalSearchBar.value.length >= 3) {
-				recipesSection.innerHTML = "";
-				resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
-				createRecipesCard(resultFiltered);
-			}	
-		});
+	openCloseAppliance()
+
+	apparatusResult.innerHTML = "";
+
+	apparatus.forEach((apparatus) => {
+		
+		return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;		
 	});
+
+		if (result) {
+	
+			apparatus = result.map(recipe => recipe.appliance)
+			apparatus = [...new Set([].concat(...apparatus))].sort()
+
+			selectedFilters.forEach((selectedFilter) => {
+   
+				apparatus.splice(apparatus.indexOf(selectedFilter),1)				
+			});
+	
+			apparatusResult.innerHTML = "";
+	
+			apparatus.forEach((apparatus) => {
+		
+				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+			});	
+		  }
+
+		if (globalSearchBar.value.length >= 3) {
+
+			apparatus = results.map(recipe => recipe.appliance)
+			apparatus = [...new Set([].concat(...apparatus))].sort()
+	
+			apparatusResult.innerHTML = "";
+	
+			apparatus.forEach((apparatus) => {
+	   
+				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+			});
+
+		if (result) {
+			
+			filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
+	
+			apparatus = filteredRecipe.map(recipe => recipe.appliance)
+			apparatus = [...new Set([].concat(...apparatus))].sort()
+
+			selectedFilters.forEach((selectedFilter) => {
+   
+				apparatus.splice(apparatus.indexOf(selectedFilter),1)							
+			});
+	
+			apparatusResult.innerHTML = "";
+	
+			apparatus.forEach((apparatus) => {
+	   
+				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+			});	
+	
+		}
+
+		  } else if(globalSearchBar.value.length <= 2 && result) {
+
+			apparatus = result.map(recipe => recipe.appliance)
+			apparatus = [...new Set([].concat(...apparatus))].sort()
+
+			selectedFilters.forEach((selectedFilter) => {
+   
+				apparatus.splice(apparatus.indexOf(selectedFilter),1)						
+			});
+	
+			apparatusResult.innerHTML = "";
+	
+			apparatus.forEach((apparatus) => {
+	   
+				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+			});
+			
+		  } else if(globalSearchBar.value.length <= 2) {
+	
+			apparatus = recipes.map(recipe => recipe.appliance)
+			apparatus = [...new Set([].concat(...apparatus))].sort()
+	
+			apparatusResult.innerHTML = "";
+	
+			apparatus.forEach((apparatus) => {
+	   
+				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+			});
+		  }
+
+        displayApparatusItems();
+    })
+
+    apparatusInput.addEventListener("keyup", (e) => {
+
+		if (e.target.value.length >= 3) {
+	
+			apparatus = recipes.map(recipe => recipe.appliance)
+			apparatus = [...new Set([].concat(...apparatus))].sort()
+	
+			apparatusResult.innerHTML = '';
+	
+			const query = e.target.value;
+			
+			const results = apparatus.filter((apparatus) => {
+				apparatusResult.style.display = 'none';
+				ingredientInput.classList.remove("open");
+				return apparatus.toLowerCase().includes(query.toLowerCase());
+			});
+			
+			results.forEach((result) => {
+				apparatusResult.style.display = 'grid';
+				ustensilsResult.style.display = 'none';
+				ingredientResult.style.display = 'none';
+				return apparatusResult.innerHTML += `<li class="app-item">${result}</li>`;
+			});
+	
+		} else {
+			apparatusResult.style.display = 'none';
+		}
+		displayApparatusItems();
+	})
+
+    const displayApparatusItems = () => {
+		const apparatusItems = document.querySelectorAll(".app-item");
+		apparatusItems.forEach((item) => {
+			item.addEventListener("click", () => {
+				selectedFilters.push(item.textContent);
+				const noduplicateFilter = [...new Set(selectedFilters)];
+				createbarFilters(noduplicateFilter, recipes);
+				apparatusResult.style.display = "none"
+				apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+	
+				if (globalSearchBar.value.length >= 3) {
+					recipesSection.innerHTML = "";
+					resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
+					createRecipesCard(resultFiltered);
+				}	
+			});
+		});
+	};
+	
+	function openCloseUstensils() {
+		if(ustensilsResult.style.display === 'grid') {
+			ustensilsResult.style.display = 'none'
+			ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+		} else {
+			ustensilsResult.style.display = 'grid'
+			ustensilArrow.classList.replace("fa-chevron-down", "fa-chevron-up");
+	
+			ingredientResult.style.display = 'none'
+			ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+			ingredientInput.classList.remove("open");
+	
+			apparatusResult.style.display = 'none'
+			apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+		}
+	
+	}
+	
+	ustensilArrow.addEventListener("click", () => {
+	
+		openCloseUstensils()
+	
+		ustensilsResult.innerHTML = "";
+	
+		ustensils.forEach((ustensil) => {
+			
+			return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;		
+		});
+		if (result) {
+		
+			ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
+			ustensils = [...new Set([].concat(...ustensils))]
+	
+			selectedFilters.forEach((selectedFilter) => {
+	   
+				ustensils.splice(ustensils.indexOf(selectedFilter),1)				
+			});
+		
+			ustensilsResult.innerHTML = "";
+		
+			ustensils.forEach((ustensil) => {
+			
+				return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;				
+			});	
+		}
+	
+		if (globalSearchBar.value.length >= 3) {
+	
+			ustensils = results.map(recipe => recipe.ustensils.map(ustensil => ustensil))
+				ustensils = [...new Set([].concat(...ustensils))].sort();
+			
+				ustensilsResult.innerHTML = "";
+			
+				ustensils.forEach((ustensil) => {
+						
+					return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;					
+				});
+	
+				if (result) {
+				
+					filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
+		
+					ustensils = filteredRecipe.map(recipe => recipe.ustensils.map(ustensil => ustensil))
+					ustensils = [...new Set([].concat(...ustensils))].sort();
+	
+					selectedFilters.forEach((selectedFilter) => {
+	   
+					ustensils.splice(ustensils.indexOf(selectedFilter),1)				
+				});
+		
+					ustensilsResult.innerHTML = "";
+		
+					ustensils.forEach((ustensil) => {
+						
+						return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;					
+					});	
+		
+				}
+				} else if(globalSearchBar.value.length <= 2 && result) {
+					
+					ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
+					ustensils = [...new Set([].concat(...ustensils))].sort();
+	
+					selectedFilters.forEach((selectedFilter) => {
+	   
+						ustensils.splice(ustensils.indexOf(selectedFilter),1)
+							
+					});
+			
+					ustensilsResult.innerHTML = "";
+			
+					ustensils.forEach((ustensil) => {
+			   
+						return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;
+						
+					});
+					
+				} else if(globalSearchBar.value.length <= 2) {
+			
+					ustensils = recipes.map(recipe => recipe.ustensils.map(ustensil => ustensil))
+					ustensils = [...new Set([].concat(...ustensils))].sort();
+			
+					ustensilsResult.innerHTML = "";
+			
+					ustensils.forEach((ustensil) => {
+			   
+						return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;
+						
+					});
+				}
+	
+		displayUstensilItems();
+	})
+	
+	ustensilsInput.addEventListener("keyup", (e) => {
+	
+		if (e.target.value.length >= 3) {
+	
+			ustensils = recipes.map(recipe => recipe.ustensils.map(ustensil => ustensil))
+			ustensils = [...new Set([].concat(...ustensils))].sort();
+	
+			ustensilsResult.innerHTML = '';
+	
+			const query = e.target.value;
+			
+			const results = ustensils.filter((ustensil) => {
+				ustensilsResult.style.display = 'none';
+				ingredientInput.classList.remove("open");
+				return ustensil.toLowerCase().includes(query.toLowerCase());
+			});
+			
+			results.forEach((result) => {
+				ustensilsResult.style.display = 'grid';
+				apparatusResult.style.display = 'none';
+				ingredientResult.style.display = 'none';
+				return ustensilsResult.innerHTML += `<li class="ustensil-item">${result}</li>`;
+			});
+	
+		} else {
+			ustensilsResult.style.display = 'none';
+		}
+		displayUstensilItems();
+	})
+	
+	const displayUstensilItems = () => {
+		const ustensilsItems = document.querySelectorAll(".ustensil-item");
+		ustensilsItems.forEach((item) => {
+			item.addEventListener("click", () => {
+				selectedFilters.push(item.textContent);
+				const noduplicateFilter = [...new Set(selectedFilters)];
+				createbarFilters(noduplicateFilter, recipes);
+				ustensilsResult.style.display = "none"
+				ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+	
+				if (globalSearchBar.value.length >= 3) {
+					recipesSection.innerHTML = "";
+					resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
+					createRecipesCard(resultFiltered);
+				}				
+			});
+		});
+	};
+}
+
+const createbarFilters = (noduplicateFilter, recipes) => {
+	
+	barFilters.innerHTML = "";
+	noduplicateFilter.forEach((filter) => {
+
+		return barFilters.innerHTML += `<div class="filter-query">${filter}<i class="fal fa-times-circle filter-icon"></i></div>`
+
+	});
+	researchOnFilters(recipes, noduplicateFilter);
 };
+
+let result;
+
