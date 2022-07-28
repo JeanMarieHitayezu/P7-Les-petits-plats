@@ -82,3 +82,155 @@ body {
     border-radius: 0 5px 5px 0;
     color: black;
   }
+
+  .dropdowns {
+    gap: 20px; 
+  }
+  
+  .dropdowns__form {
+    display: flex;
+    height: 70px;
+    width: 100%;
+  }
+
+   /* INGREDIENTS */
+
+  .ingredient-button {
+    border: none;
+    margin: 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    color: white;
+    background-color: #3282F7;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .ingredient-input {
+    border-radius: 5px 0px 0px 5px;
+    border: none;
+    color: white;
+    margin: 0;
+    padding: 0 0 0 1rem;
+    width: 100%;
+    background-color: #3282F7;
+    border-radius: 5px 0 0 5px;
+    font-size: 18px;
+  }
+
+  .ingredient-drops {
+    background-color: #3282F7;
+    color: white;
+    padding: 0.8rem;
+    margin-top: -10px;
+    list-style-type: none;
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 3fr);
+    display: none;
+    position: absolute;
+    width: 95%;
+    animation: flip-in-hor-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    z-index: 1;
+  }
+  
+  .ingredient-item {
+    cursor: pointer;
+  }
+
+  .ingredient-input::placeholder {
+    color: white;
+  }
+
+
+/* APPAREILS */
+
+  .apparatus-button {
+    border: none;
+    margin: 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    color: white;
+    background-color: #68D9A4;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .apparatus-dropdown {
+    border-radius: 5px 0px 0px 5px;
+    border: none;
+    color: white;
+    margin: 0;
+    padding: 0 0 0 1rem;
+    width: 100%;
+    background-color: #68D9A4;
+    border-radius: 5px 0 0 5px;
+    font-size: 18px;
+  }
+
+  .apparatus-result {
+    background-color: #68D9A4;
+    color: white;
+    padding: 0.8rem;
+    margin-top: -10px;
+    display: none;
+    list-style-type: none;
+    gap: 0.5rem;
+    grid-template-columns: repeat(4, 4fr);
+    animation: flip-in-hor-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    z-index: 1;
+  }
+  
+  .app-item {
+    cursor: pointer;
+  }
+
+  .apparatus-dropdown::placeholder {
+    color: white;
+  }
+  
+  .apparatus__form {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+/* USTENSILES */
+  
+.ustensils-button {
+  border: none;
+  margin: 0;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  color: white;
+  background-color: #ED6454;
+  border-radius: 0 5px 5px 0;
+}
+
+.ustensils-dropdown {
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+  color: white;
+  margin: 0;
+  padding: 0 0 0 1rem;
+  width: 100%;
+  background-color: #ED6454;
+  border-radius: 5px 0 0 5px;
+  font-size: 18px;
+}
+
+.ustensils-result {
+  background-color: #ED6454;
+  color: white;
+  padding: 0.8rem;
+  list-style-type: none;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 3fr);
+  display: none;
+  animation: flip-in-hor-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  z-index: 1;
+}
+
+.ustensil-item {
+  cursor: pointer;
+}
+
+.ustensils-dropdown::placeholder {
+  color: white;
+}
