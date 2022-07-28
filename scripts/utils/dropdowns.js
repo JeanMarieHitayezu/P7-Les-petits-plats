@@ -183,3 +183,164 @@ const displayInputs = (recipes) => {
 	};
 
 }
+
+function openCloseAppliance() {
+	if(apparatusResult.style.display === 'grid') {
+		apparatusResult.style.display = 'none'
+		apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+	} else {
+		apparatusResult.style.display = 'grid'
+		apparatusArrow.classList.replace("fa-chevron-down", "fa-chevron-up");
+
+		ingredientResult.style.display = 'none'
+		ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+		ingredientInput.classList.remove("open");
+
+		ustensilsResult.style.display = 'none'
+		ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+	}
+}
+
+apparatusArrow.addEventListener("click", () => {
+
+openCloseAppliance()
+
+apparatusResult.innerHTML = "";
+
+apparatus.forEach((apparatus) => {
+	
+	return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;		
+});
+
+	if (result) {
+
+		apparatus = result.map(recipe => recipe.appliance)
+		apparatus = [...new Set([].concat(...apparatus))].sort()
+
+		selectedFilters.forEach((selectedFilter) => {
+
+			apparatus.splice(apparatus.indexOf(selectedFilter),1)				
+		});
+
+		apparatusResult.innerHTML = "";
+
+		apparatus.forEach((apparatus) => {
+	
+			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+		});	
+	  }
+
+	if (globalSearchBar.value.length >= 3) {
+
+		apparatus = results.map(recipe => recipe.appliance)
+		apparatus = [...new Set([].concat(...apparatus))].sort()
+
+		apparatusResult.innerHTML = "";
+
+		apparatus.forEach((apparatus) => {
+   
+			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+		});
+
+	if (result) {
+		
+		filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
+
+		apparatus = filteredRecipe.map(recipe => recipe.appliance)
+		apparatus = [...new Set([].concat(...apparatus))].sort()
+
+		selectedFilters.forEach((selectedFilter) => {
+
+			apparatus.splice(apparatus.indexOf(selectedFilter),1)							
+		});
+
+		apparatusResult.innerHTML = "";
+
+		apparatus.forEach((apparatus) => {
+   
+			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+		});	
+
+	}
+
+	  } else if(globalSearchBar.value.length <= 2 && result) {
+
+		apparatus = result.map(recipe => recipe.appliance)
+		apparatus = [...new Set([].concat(...apparatus))].sort()
+
+		selectedFilters.forEach((selectedFilter) => {
+
+			apparatus.splice(apparatus.indexOf(selectedFilter),1)						
+		});
+
+		apparatusResult.innerHTML = "";
+
+		apparatus.forEach((apparatus) => {
+   
+			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+		});
+		
+	  } else if(globalSearchBar.value.length <= 2) {
+
+		apparatus = recipes.map(recipe => recipe.appliance)
+		apparatus = [...new Set([].concat(...apparatus))].sort()
+
+		apparatusResult.innerHTML = "";
+
+		apparatus.forEach((apparatus) => {
+   
+			return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
+		});
+	  }
+
+	displayApparatusItems();
+})
+
+apparatusInput.addEventListener("keyup", (e) => {
+
+	if (e.target.value.length >= 3) {
+
+		apparatus = recipes.map(recipe => recipe.appliance)
+		apparatus = [...new Set([].concat(...apparatus))].sort()
+
+		apparatusResult.innerHTML = '';
+
+		const query = e.target.value;
+		
+		const results = apparatus.filter((apparatus) => {
+			apparatusResult.style.display = 'none';
+			ingredientInput.classList.remove("open");
+			return apparatus.toLowerCase().includes(query.toLowerCase());
+		});
+		
+		results.forEach((result) => {
+			apparatusResult.style.display = 'grid';
+			ustensilsResult.style.display = 'none';
+			ingredientResult.style.display = 'none';
+			return apparatusResult.innerHTML += `<li class="app-item">${result}</li>`;
+		});
+
+	} else {
+		apparatusResult.style.display = 'none';
+	}
+	displayApparatusItems();
+})
+
+const displayApparatusItems = () => {
+	const apparatusItems = document.querySelectorAll(".app-item");
+	apparatusItems.forEach((item) => {
+		item.addEventListener("click", () => {
+			selectedFilters.push(item.textContent);
+			const noduplicateFilter = [...new Set(selectedFilters)];
+			createbarFilters(noduplicateFilter, recipes);
+			apparatusResult.style.display = "none"
+			apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+
+			if (globalSearchBar.value.length >= 3) {
+				recipesSection.innerHTML = "";
+				resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
+				createRecipesCard(resultFiltered);
+			}	
+		});
+	});
+};
