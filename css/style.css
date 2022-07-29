@@ -344,3 +344,123 @@ body {
     opacity: 1;
   }
 }
+
+/* LARGE DEVICES */
+
+@media screen and (min-width: 800px) {
+  body {
+    margin: auto;
+    max-width: 800px;
+  }
+  .body {
+    align-items: center;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    justify-content: center;
+  }
+  .header {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .search {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .dropdowns {
+    align-items: center;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    justify-content: center;
+  }
+  .dropdowns .ingredient {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .dropdowns .apparatus {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .dropdowns .ustensils {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .ingredient-results {
+    grid-column: 1 / span 6;
+    grid-row: 2;
+  }
+  .apparatus-results {
+    grid-column: 2 / span 6;
+    grid-row: 2;
+  }
+  .ustensils-result {
+    grid-column: 3 / span 6;
+    grid-row: 2;
+  }
+
+  .ingredient-results {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+  }
+
+  .ingredient-drops {
+    background-color: #3282F7;
+    color: white;
+    padding: 0.8rem;
+    margin-top: -20px;
+    list-style-type: none;
+    gap: 0.5rem;
+    grid-template-columns: repeat(6, 3fr);
+    display: none;
+    width: 820px;
+  }
+
+  .open {
+    width: 600px;
+  }
+
+  .apparatus-results {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+  }
+
+  .apparatus-result {
+    background-color: #68D9A4;
+    color: white;
+    padding: 0.8rem;
+    margin-top: -20px;
+    display: none;
+    list-style-type: none;
+    gap: 0.5rem;
+    grid-template-columns: repeat(2, 2fr);
+    position: absolute;
+  
+  }
+
+  .ustensils-result {
+    background-color: #ED6454;
+    color: white;
+    padding: 0.8rem;
+    list-style-type: none;
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 3fr);
+    position: absolute;
+    margin-top: 350px;
+    margin-top: -10px;
+  }
+
+  .recipes-section {
+    align-items: center;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, 2fr);
+    grid-template-rows: 1fr;
+    justify-content: center;
+  }
+
+}
+
+
