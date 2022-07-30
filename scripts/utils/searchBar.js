@@ -1,6 +1,6 @@
 const searchInput = (recipes) => {
 
-	globalSearchBar.addEventListener("keyup", (e) => {
+	searchBar.addEventListener("keyup", (e) => {
 
 		if (e.target.value.length >= 3) {
 

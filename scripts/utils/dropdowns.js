@@ -72,7 +72,7 @@ const displayInputs = (recipes) => {
 		});
 
 	  }
-	  if (globalSearchBar.value.length >= 3) {
+	  if (searchBar.value.length >= 3) {
 
 		ingredients = results.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
@@ -86,7 +86,7 @@ const displayInputs = (recipes) => {
 
 		if (result) {
 			
-			filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
+			filteredRecipe = filteredRecipes(recipes, searchBar.value);
 	
 			ingredients = filteredRecipe.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 			ingredients = [...new Set([].concat(...ingredients))].sort()
@@ -104,7 +104,7 @@ const displayInputs = (recipes) => {
 			});	
 		}
 
-	  } else if(globalSearchBar.value.length <= 2 && result) {
+	  } else if(searchBar.value.length <= 2 && result) {
 		
 		ingredients = result.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
@@ -120,7 +120,7 @@ const displayInputs = (recipes) => {
    
 			return ingredientResult.innerHTML += `<li class="ingredient-item">${ingredient}</li>`;			
 		});
-	  } else if(globalSearchBar.value.length <= 2) {
+	  } else if(searchBar.value.length <= 2) {
 
 		ingredients = recipes.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
@@ -178,9 +178,9 @@ const displayInputs = (recipes) => {
 				ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 				ingredientInput.style.width = "100%";
 	
-				if (globalSearchBar.value.length >= 3) {
+				if (searchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
-					resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
+					resultFiltered = filteredRecipes(recipes, searchBar.value);
 					createRecipesCard(resultFiltered);
 				}	
 			});
@@ -233,7 +233,7 @@ const displayInputs = (recipes) => {
 			});	
 		  }
 
-		if (globalSearchBar.value.length >= 3) {
+		if (searchBar.value.length >= 3) {
 
 			apparatus = results.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
@@ -247,7 +247,7 @@ const displayInputs = (recipes) => {
 
 		if (result) {
 			
-			filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
+			filteredRecipe = filteredRecipes(recipes, searchBar.value);
 	
 			apparatus = filteredRecipe.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
@@ -266,7 +266,7 @@ const displayInputs = (recipes) => {
 	
 		}
 
-		  } else if(globalSearchBar.value.length <= 2 && result) {
+		  } else if(searchBar.value.length <= 2 && result) {
 
 			apparatus = result.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
@@ -283,7 +283,7 @@ const displayInputs = (recipes) => {
 				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
 			});
 			
-		  } else if(globalSearchBar.value.length <= 2) {
+		  } else if(searchBar.value.length <= 2) {
 	
 			apparatus = recipes.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
@@ -339,9 +339,9 @@ const displayInputs = (recipes) => {
 				apparatusResult.style.display = "none"
 				apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 	
-				if (globalSearchBar.value.length >= 3) {
+				if (searchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
-					resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
+					resultFiltered = filteredRecipes(recipes, searchBar.value);
 					createRecipesCard(resultFiltered);
 				}	
 			});
@@ -394,7 +394,7 @@ const displayInputs = (recipes) => {
 			});	
 		}
 	
-		if (globalSearchBar.value.length >= 3) {
+		if (searchBar.value.length >= 3) {
 	
 			ustensils = results.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 				ustensils = [...new Set([].concat(...ustensils))].sort();
@@ -408,7 +408,7 @@ const displayInputs = (recipes) => {
 	
 				if (result) {
 				
-					filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
+					filteredRecipe = filteredRecipes(recipes, searchBar.value);
 		
 					ustensils = filteredRecipe.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 					ustensils = [...new Set([].concat(...ustensils))].sort();
@@ -426,7 +426,7 @@ const displayInputs = (recipes) => {
 					});	
 		
 				}
-				} else if(globalSearchBar.value.length <= 2 && result) {
+				} else if(searchBar.value.length <= 2 && result) {
 					
 					ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 					ustensils = [...new Set([].concat(...ustensils))].sort();
@@ -445,7 +445,7 @@ const displayInputs = (recipes) => {
 						
 					});
 					
-				} else if(globalSearchBar.value.length <= 2) {
+				} else if(searchBar.value.length <= 2) {
 			
 					ustensils = recipes.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 					ustensils = [...new Set([].concat(...ustensils))].sort();
@@ -502,9 +502,9 @@ const displayInputs = (recipes) => {
 				ustensilsResult.style.display = "none"
 				ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 	
-				if (globalSearchBar.value.length >= 3) {
+				if (searchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
-					resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
+					resultFiltered = filteredRecipes(recipes, searchBar.value);
 					createRecipesCard(resultFiltered);
 				}				
 			});
@@ -512,16 +512,4 @@ const displayInputs = (recipes) => {
 	};
 }
 
-const createbarFilters = (noduplicateFilter, recipes) => {
-	
-	barFilters.innerHTML = "";
-	noduplicateFilter.forEach((filter) => {
-
-		return barFilters.innerHTML += `<div class="filter-query">${filter}<i class="fal fa-times-circle filter-icon"></i></div>`
-
-	});
-	researchOnFilters(recipes, noduplicateFilter);
-};
-
-let result;
 

@@ -4,7 +4,7 @@ let ustensils = [];
 let resultFiltered;
 const filterSelected = [];
 
-const globalSearchBar = document.querySelector(".search-bar");
+const searchBar = document.querySelector(".search-bar");
 const recipesSection = document.querySelector(".recipes-section");
 
 const ingredientArrow = document.querySelector(".ingredient-arow");
@@ -42,9 +42,7 @@ const createRecipesCard = (recipes) => {
   const { recipes } = await getData();
     
   createRecipesCard(recipes)
-  displayInputs(recipes);
-  inputSearch(recipes)
-  filteredRecipes(recipes, globalSearchBar)
+  displayInputs(recipes);  
 
 };
   
