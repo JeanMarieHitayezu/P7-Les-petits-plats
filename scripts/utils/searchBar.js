@@ -1,6 +1,19 @@
-const searchInput = (recipes) => {
+const barFilterMgt = (noduplicateFilter, recipes) => {
+	
+	barFilters.innerHTML = "";
+	noduplicateFilter.forEach((filter) => {
 
-	globalSearchBar.addEventListener("keyup", (e) => {
+		return barFilters.innerHTML += `<div class="filter-query">${filter}<i class="fal fa-times-circle filter-icon"></i></div>`
+
+	});
+	researchOnFilters(recipes, noduplicateFilter);
+};
+
+let result;
+
+const inputSearch = (recipes) => {
+
+	searchBar.addEventListener("keyup", (e) => {
 
 		if (e.target.value.length >= 3) {
 
@@ -23,11 +36,6 @@ const searchInput = (recipes) => {
 		    createRecipesCard(recipes);
 	    }
 
-    })
+})
 
 }
-
-
-
-
-

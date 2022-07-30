@@ -1,9 +1,4 @@
 
-const barFilters = document.querySelector(".search-filters");
-const ingredientItem = document.querySelectorAll(".ingredient-item");
-const ingredientResult = document.querySelector(".ingredient-drops");
-const apparatusResult = document.querySelector(".apparatus-result");
-const ustensilsResult = document.querySelector(".ustensils-result");
 const initFilters = (recipes) => {
 
 	recipes.forEach((recipe) => {
@@ -58,7 +53,7 @@ const displayInputs = (recipes) => {
 		ingredients = result.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
 
-		selectedFilters.forEach((selectedFilter) => {
+		filterSelected.forEach((selectedFilter) => {
    
 			ingredients.splice(ingredients.indexOf(selectedFilter),1)			
 		});
@@ -72,7 +67,7 @@ const displayInputs = (recipes) => {
 		});
 
 	  }
-	  if (globalSearchBar.value.length >= 3) {
+	  if (searchBar.value.length >= 3) {
 
 		ingredients = results.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
@@ -86,12 +81,12 @@ const displayInputs = (recipes) => {
 
 		if (result) {
 			
-			filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
+			filteredRecipe = filteredRecipes(recipes, searchBar.value);
 	
 			ingredients = filteredRecipe.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 			ingredients = [...new Set([].concat(...ingredients))].sort()
 
-			selectedFilters.forEach((selectedFilter) => {
+			filterSelected.forEach((selectedFilter) => {
    
 				ingredients.splice(ingredients.indexOf(selectedFilter),1)				
 			});	
@@ -104,12 +99,12 @@ const displayInputs = (recipes) => {
 			});	
 		}
 
-	  } else if(globalSearchBar.value.length <= 2 && result) {
+	  } else if(searchBar.value.length <= 2 && result) {
 		
 		ingredients = result.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
 
-		selectedFilters.forEach((selectedFilter) => {
+		filterSelected.forEach((selectedFilter) => {
    
 			ingredients.splice(ingredients.indexOf(selectedFilter),1)						
 		});
@@ -120,7 +115,7 @@ const displayInputs = (recipes) => {
    
 			return ingredientResult.innerHTML += `<li class="ingredient-item">${ingredient}</li>`;			
 		});
-	  } else if(globalSearchBar.value.length <= 2) {
+	  } else if(searchBar.value.length <= 2) {
 
 		ingredients = recipes.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
@@ -171,17 +166,17 @@ const displayInputs = (recipes) => {
 	
 		ingredientItem.forEach((item) => {
 			item.addEventListener("click", () => {
-				selectedFilters.push(item.textContent);
-				const noduplicateFilter = [...new Set(selectedFilters)];
-				createbarFilters(noduplicateFilter, recipes);
+				filterSelected.push(item.textContent);
+				const noduplicateFilter = [...new Set(filterSelected)];
+				barFilterMgt(noduplicateFilter, recipes);
 				ingredientResult.style.display = "none"
 				ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 				ingredientInput.style.width = "100%";
 	
-				if (globalSearchBar.value.length >= 3) {
+				if (searchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
-					resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
-					createRecipesCard(resultFiltered);
+					filteredResult = filteredRecipes(recipes, searchBar.value);
+					createRecipesCard(filteredResult);
 				}	
 			});
 		});
@@ -220,7 +215,7 @@ const displayInputs = (recipes) => {
 			apparatus = result.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
 
-			selectedFilters.forEach((selectedFilter) => {
+			filterSelected.forEach((selectedFilter) => {
    
 				apparatus.splice(apparatus.indexOf(selectedFilter),1)				
 			});
@@ -233,7 +228,7 @@ const displayInputs = (recipes) => {
 			});	
 		  }
 
-		if (globalSearchBar.value.length >= 3) {
+		if (searchBar.value.length >= 3) {
 
 			apparatus = results.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
@@ -247,12 +242,12 @@ const displayInputs = (recipes) => {
 
 		if (result) {
 			
-			filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
+			filteredRecipe = filteredRecipes(recipes, searchBar.value);
 	
 			apparatus = filteredRecipe.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
 
-			selectedFilters.forEach((selectedFilter) => {
+			filterSelected.forEach((selectedFilter) => {
    
 				apparatus.splice(apparatus.indexOf(selectedFilter),1)							
 			});
@@ -266,12 +261,12 @@ const displayInputs = (recipes) => {
 	
 		}
 
-		  } else if(globalSearchBar.value.length <= 2 && result) {
+		  } else if(searchBar.value.length <= 2 && result) {
 
 			apparatus = result.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
 
-			selectedFilters.forEach((selectedFilter) => {
+			filterSelected.forEach((selectedFilter) => {
    
 				apparatus.splice(apparatus.indexOf(selectedFilter),1)						
 			});
@@ -283,7 +278,7 @@ const displayInputs = (recipes) => {
 				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
 			});
 			
-		  } else if(globalSearchBar.value.length <= 2) {
+		  } else if(searchBar.value.length <= 2) {
 	
 			apparatus = recipes.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
@@ -333,16 +328,16 @@ const displayInputs = (recipes) => {
 		const apparatusItems = document.querySelectorAll(".app-item");
 		apparatusItems.forEach((item) => {
 			item.addEventListener("click", () => {
-				selectedFilters.push(item.textContent);
-				const noduplicateFilter = [...new Set(selectedFilters)];
-				createbarFilters(noduplicateFilter, recipes);
+				filterSelected.push(item.textContent);
+				const noduplicateFilter = [...new Set(filterSelected)];
+				barFilterMgt(noduplicateFilter, recipes);
 				apparatusResult.style.display = "none"
 				apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 	
-				if (globalSearchBar.value.length >= 3) {
+				if (searchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
-					resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
-					createRecipesCard(resultFiltered);
+					filteredResult = filteredRecipes(recipes, searchBar.value);
+					createRecipesCard(filteredResult);
 				}	
 			});
 		});
@@ -381,7 +376,7 @@ const displayInputs = (recipes) => {
 			ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 			ustensils = [...new Set([].concat(...ustensils))]
 	
-			selectedFilters.forEach((selectedFilter) => {
+			filterSelected.forEach((selectedFilter) => {
 	   
 				ustensils.splice(ustensils.indexOf(selectedFilter),1)				
 			});
@@ -394,58 +389,57 @@ const displayInputs = (recipes) => {
 			});	
 		}
 	
-		if (globalSearchBar.value.length >= 3) {
-	
+		if (searchBar.value.length >= 3) {
 			ustensils = results.map(recipe => recipe.ustensils.map(ustensil => ustensil))
+			ustensils = [...new Set([].concat(...ustensils))].sort();
+			
+			ustensilsResult.innerHTML = "";
+			
+			ustensils.forEach((ustensil) => {
+						
+				return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;					
+			});
+	
+			if (result) {
+				
+				filteredRecipe = filteredRecipes(recipes, searchBar.value);
+		
+				ustensils = filteredRecipe.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 				ustensils = [...new Set([].concat(...ustensils))].sort();
+	
+				filterSelected.forEach((selectedFilter) => {
+	   
+				    ustensils.splice(ustensils.indexOf(selectedFilter),1)				
+				});
+		
+				ustensilsResult.innerHTML = "";
+		
+				ustensils.forEach((ustensil) => {
+						
+					return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;					
+				});	
+		
+			}
+			} else if(searchBar.value.length <= 2 && result) {
+					
+				ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
+				ustensils = [...new Set([].concat(...ustensils))].sort();
+	
+				filterSelected.forEach((selectedFilter) => {
+	   
+					ustensils.splice(ustensils.indexOf(selectedFilter),1)
+							
+				});
 			
 				ustensilsResult.innerHTML = "";
 			
 				ustensils.forEach((ustensil) => {
-						
-					return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;					
-				});
-	
-				if (result) {
-				
-					filteredRecipe = filteredRecipes(recipes, globalSearchBar.value);
-		
-					ustensils = filteredRecipe.map(recipe => recipe.ustensils.map(ustensil => ustensil))
-					ustensils = [...new Set([].concat(...ustensils))].sort();
-	
-					selectedFilters.forEach((selectedFilter) => {
-	   
-					ustensils.splice(ustensils.indexOf(selectedFilter),1)				
-				});
-		
-					ustensilsResult.innerHTML = "";
-		
-					ustensils.forEach((ustensil) => {
-						
-						return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;					
-					});	
-		
-				}
-				} else if(globalSearchBar.value.length <= 2 && result) {
-					
-					ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
-					ustensils = [...new Set([].concat(...ustensils))].sort();
-	
-					selectedFilters.forEach((selectedFilter) => {
-	   
-						ustensils.splice(ustensils.indexOf(selectedFilter),1)
-							
-					});
-			
-					ustensilsResult.innerHTML = "";
-			
-					ustensils.forEach((ustensil) => {
 			   
-						return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;
+					return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;
 						
-					});
+				});
 					
-				} else if(globalSearchBar.value.length <= 2) {
+				} else if(searchBar.value.length <= 2) {
 			
 					ustensils = recipes.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 					ustensils = [...new Set([].concat(...ustensils))].sort();
@@ -458,6 +452,8 @@ const displayInputs = (recipes) => {
 						
 					});
 				}
+	
+			    
 	
 		displayUstensilItems();
 	})
@@ -496,32 +492,19 @@ const displayInputs = (recipes) => {
 		const ustensilsItems = document.querySelectorAll(".ustensil-item");
 		ustensilsItems.forEach((item) => {
 			item.addEventListener("click", () => {
-				selectedFilters.push(item.textContent);
-				const noduplicateFilter = [...new Set(selectedFilters)];
-				createbarFilters(noduplicateFilter, recipes);
+				filterSelected.push(item.textContent);
+				const noduplicateFilter = [...new Set(filterSelected)];
+				barFilterMgt(noduplicateFilter, recipes);
 				ustensilsResult.style.display = "none"
 				ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 	
-				if (globalSearchBar.value.length >= 3) {
+				if (searchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
-					resultFiltered = filteredRecipes(recipes, globalSearchBar.value);
-					createRecipesCard(resultFiltered);
+					filteredResult = filteredRecipes(recipes, searchBar.value);
+					createRecipesCard(filteredResult);
 				}				
 			});
 		});
 	};
 }
-
-const createbarFilters = (noduplicateFilter, recipes) => {
-	
-	barFilters.innerHTML = "";
-	noduplicateFilter.forEach((filter) => {
-
-		return barFilters.innerHTML += `<div class="filter-query">${filter}<i class="fal fa-times-circle filter-icon"></i></div>`
-
-	});
-	researchOnFilters(recipes, noduplicateFilter);
-};
-
-let result;
 
