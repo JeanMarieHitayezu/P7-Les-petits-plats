@@ -1,4 +1,3 @@
-
 const initFilters = (recipes) => {
 
 	recipes.forEach((recipe) => {
