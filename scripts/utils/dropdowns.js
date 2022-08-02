@@ -47,10 +47,13 @@ const displayInputs = (recipes) => {
 		return ingredientResult.innerHTML += `<li class="ingredient-item">${ingredient}</li>`;		
 	});
 
+    //  S'IL Y A UN FILTRE, TRIER LA LISTE EN FONCTION DU FILTRE SÉLECTIONNÉ
 	if (result) {
 
 		ingredients = result.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
+
+        // ENLEVER L,ÉLÉMENT CLIQUÉ
 
 		filterSelected.forEach((selectedFilter) => {
    
@@ -66,6 +69,8 @@ const displayInputs = (recipes) => {
 		});
 
 	  }
+
+	  // S'IL Y A AU MOINS TROIS CARACTÈRES, TRIER LA LISTE
 	  if (searchBar.value.length >= 3) {
 
 		ingredients = results.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
@@ -77,7 +82,8 @@ const displayInputs = (recipes) => {
    
 			return ingredientResult.innerHTML += `<li class="ingredient-item">${ingredient}</li>`;			
 		});
-
+        
+		// S'IL Y A AU MOINS TROIS CARACTÈRES ET UN FILTRE, TRIER LES INGRÉDIENTS EN FONCTION DES RECETTES
 		if (result) {
 			
 			filteredRecipe = filteredRecipes(recipes, searchBar.value);
@@ -98,11 +104,14 @@ const displayInputs = (recipes) => {
 			});	
 		}
 
+		// S'IL Y A MOINS DE TROIS CARACTÈRES MAIS QU'IL Y A UN FILTRE, AFFICHER LA LISTE EN FONCTION DU FILTRE 
+
 	  } else if(searchBar.value.length <= 2 && result) {
 		
 		ingredients = result.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
 		ingredients = [...new Set([].concat(...ingredients))].sort()
-
+        
+		// ENLEVER DE LA LISTE L'INGRÉDIENT CLIQUÉ
 		filterSelected.forEach((selectedFilter) => {
    
 			ingredients.splice(ingredients.indexOf(selectedFilter),1)						
@@ -114,6 +123,8 @@ const displayInputs = (recipes) => {
    
 			return ingredientResult.innerHTML += `<li class="ingredient-item">${ingredient}</li>`;			
 		});
+
+		// SI MOINS DE TROIS CARACTÈRES, METTRE LA LISTE ORIGINALE
 	  } else if(searchBar.value.length <= 2) {
 
 		ingredients = recipes.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient))
@@ -171,7 +182,8 @@ const displayInputs = (recipes) => {
 				ingredientResult.style.display = "none"
 				ingredientArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
 				ingredientInput.style.width = "100%";
-	
+	            
+               // REFILTRER LA BARRE DE RECHERCHE
 				if (searchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
 					filteredResult = filteredRecipes(recipes, searchBar.value);
@@ -180,6 +192,8 @@ const displayInputs = (recipes) => {
 			});
 		});
 	};
+
+	/* APPARATUS */
 
     function openCloseAppliance() {
 		if(apparatusResult.style.display === 'grid') {
@@ -208,12 +222,15 @@ const displayInputs = (recipes) => {
 		
 		return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;		
 	});
+	    
+	    // S'IL Y A UN FILTRE, TRIER LA LISTE EN FONCTION DE CELUI-CI
 
 		if (result) {
 	
 			apparatus = result.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
-
+            
+			// ENLEVER L'ÉLÉMENT CLIQUÉ
 			filterSelected.forEach((selectedFilter) => {
    
 				apparatus.splice(apparatus.indexOf(selectedFilter),1)				
@@ -226,7 +243,8 @@ const displayInputs = (recipes) => {
 				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
 			});	
 		  }
-
+          
+		  // S'IL Y A AU MOINS TROIS CARACTÈRES, TRIER LA LISTE
 		if (searchBar.value.length >= 3) {
 
 			apparatus = results.map(recipe => recipe.appliance)
@@ -239,13 +257,16 @@ const displayInputs = (recipes) => {
 				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
 			});
 
+			// S'IL Y A AU MOINS TROIS CARACTÈRES ET UN FILTRE, TRIER LES APPLIANCES EN FONCTION DES RECETTES
+
 		if (result) {
 			
 			filteredRecipe = filteredRecipes(recipes, searchBar.value);
 	
 			apparatus = filteredRecipe.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
-
+            
+			// ENLEVER L'ÉLÉMENT CLIQUÉ
 			filterSelected.forEach((selectedFilter) => {
    
 				apparatus.splice(apparatus.indexOf(selectedFilter),1)							
@@ -259,12 +280,14 @@ const displayInputs = (recipes) => {
 			});	
 	
 		}
-
+		  
+		// S'IL Y A MOINS DE TROIS CARCTÈRES MAIS UN FILTRE, AFFICHER LA LISTE EN FONCTION DU FILTRE
 		  } else if(searchBar.value.length <= 2 && result) {
 
 			apparatus = result.map(recipe => recipe.appliance)
 			apparatus = [...new Set([].concat(...apparatus))].sort()
-
+            
+			// ENLEVER DE LA LISTE L'INGRÉDIENT CLIQUÉ
 			filterSelected.forEach((selectedFilter) => {
    
 				apparatus.splice(apparatus.indexOf(selectedFilter),1)						
@@ -277,6 +300,7 @@ const displayInputs = (recipes) => {
 				return apparatusResult.innerHTML += `<li class="app-item">${apparatus}</li>`;				
 			});
 			
+			// S'IL Y A MOINS DE TROIS CARACTÈRES, METTRE LA LISTE ORIGINALE
 		  } else if(searchBar.value.length <= 2) {
 	
 			apparatus = recipes.map(recipe => recipe.appliance)
@@ -332,7 +356,8 @@ const displayInputs = (recipes) => {
 				barFilterMgt(noduplicateFilter, recipes);
 				apparatusResult.style.display = "none"
 				apparatusArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
-	
+	             
+                // REFILTRER LA BARRE DE RECHERCHE
 				if (searchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
 					filteredResult = filteredRecipes(recipes, searchBar.value);
@@ -370,11 +395,14 @@ const displayInputs = (recipes) => {
 			
 			return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;		
 		});
+
+		// S'IL Y A UN FILTRE, TRIER LA LISTE EN FONCTION DE CELUI-CI
 		if (result) {
 		
 			ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 			ustensils = [...new Set([].concat(...ustensils))]
-	
+	        
+			// ENLEVER L'ÉLÉMENT CLIQUÉ
 			filterSelected.forEach((selectedFilter) => {
 	   
 				ustensils.splice(ustensils.indexOf(selectedFilter),1)				
@@ -387,7 +415,8 @@ const displayInputs = (recipes) => {
 				return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;				
 			});	
 		}
-	
+	     
+		// S'IL Y A AU MOINS TROIS CARACTÈRES, TRIER LA LISTE
 		if (searchBar.value.length >= 3) {
 			ustensils = results.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 			ustensils = [...new Set([].concat(...ustensils))].sort();
@@ -398,14 +427,16 @@ const displayInputs = (recipes) => {
 						
 				return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;					
 			});
-	
+
+	        // S'IL Y A AU MOINS TROIS CARCTÈRES ET UN FILTRE, TRIER LES USTENSILS EN FONCTION DES RECETTES
 			if (result) {
 				
 				filteredRecipe = filteredRecipes(recipes, searchBar.value);
 		
 				ustensils = filteredRecipe.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 				ustensils = [...new Set([].concat(...ustensils))].sort();
-	
+	            
+				// ENLEVER L'ÈLÈMENT CLIQUÈ
 				filterSelected.forEach((selectedFilter) => {
 	   
 				    ustensils.splice(ustensils.indexOf(selectedFilter),1)				
@@ -419,11 +450,14 @@ const displayInputs = (recipes) => {
 				});	
 		
 			}
+
+			// SI MOINS DE TROIS CARACTÈRES MAIS UN FILTRE, AFFICHER LA LISTE EN FONCTION DU FILTRE
 			} else if(searchBar.value.length <= 2 && result) {
 					
 				ustensils = result.map(recipe => recipe.ustensils.map(ustensil => ustensil))
 				ustensils = [...new Set([].concat(...ustensils))].sort();
-	
+	            
+				// ENLEVER L'ÉLÉMENT CLIQUÉ
 				filterSelected.forEach((selectedFilter) => {
 	   
 					ustensils.splice(ustensils.indexOf(selectedFilter),1)
@@ -437,7 +471,8 @@ const displayInputs = (recipes) => {
 					return ustensilsResult.innerHTML += `<li class="ustensil-item">${ustensil}</li>`;
 						
 				});
-					
+				
+				// S'IL Y A MOINS DE TROIS CARACTÈRES, METTRE LA LISTE ORIGINALE
 				} else if(searchBar.value.length <= 2) {
 			
 					ustensils = recipes.map(recipe => recipe.ustensils.map(ustensil => ustensil))
@@ -496,7 +531,8 @@ const displayInputs = (recipes) => {
 				barFilterMgt(noduplicateFilter, recipes);
 				ustensilsResult.style.display = "none"
 				ustensilArrow.classList.replace("fa-chevron-up", "fa-chevron-down");
-	
+	            
+				// REFILTRER LA BARRE DE RECHERCHE
 				if (searchBar.value.length >= 3) {
 					recipesSection.innerHTML = "";
 					filteredResult = filteredRecipes(recipes, searchBar.value);
